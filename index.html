@@ -8,6 +8,7 @@
     <title>Currencychanger</title>
 
     <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -19,19 +20,45 @@
                 <div class="col s12 m12">
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title">Currency Changer v1.0</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
-                        </div>
+                            <span class="card-title center-align">Currency Changer v1.0</span>
+                            <div class="row mt-5" id="changer">
+                                <div class="input-field col s5">
+                                    <input id="currencyFrom" list="countries" type="text" class="validate">
+                                    <label for="currencyFrom">Currency I have</label>
+                                </div>
+                                <div class="col s2 center-align" id="swaparrows">
+                                    <i class="material-icons">keyboard_arrow_left</i>
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                </div>
+                                <div class="input-field col s5">
+                                    <input id="currencyTo" list="countries" type="text" class="validate">
+                                    <label for="currencyTo">Currency I want</label>
+                                </div>
+                            </div>
+
+                        </div><!-- END CART CONTENT -->
+
+
+
+                        
                         <div class="card-action">
-                            <a href="#" class="waves-effect waves-light btn">This is a link</a>
-                            <a href="#" class="waves-effect waves-light btn">This is a link</a>
+                            <a href="#" class="waves-effect waves-green btn">This is a link</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <datalist id="countries">
+        <option value="Chocolate">
+        <option value="Coconut">
+        <option value="Mint">
+        <option value="Strawberry">
+        <option value="Vanilla">
+    </datalist>
+
 
 
 

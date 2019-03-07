@@ -4,3 +4,17 @@
 .mt-5{
     margin-top: 50px;
 }
+
+.card{
+    min-width: 768px;
+}
+#swaparrows i{
+    font-size: 40px;
+    padding: 0;
+    margin: 0;
+    transition: color .2s ease-in-out;
+}
+#swaparrows i:hover{
+    color: #2BBBAD;
+    cursor: pointer;
+}
