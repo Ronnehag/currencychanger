@@ -12,13 +12,14 @@
     const dropdownList = document.querySelector("#countries");
     const confirmButton = document.querySelector("#calculate");
 
+    // Private variables that holds current ID's
     let selectedFrom;
     let selectedTo;
 
     // EVENTLISTENERS
     fromCurrencyInput.addEventListener("change", storeSelectedId);
     toCurrencyInput.addEventListener("change", storeSelectedId);
-    confirmButton.addEventListener("change", doCalculation);
+    confirmButton.addEventListener("click", doCalculation);
 
     // Fills the search input's dropdown list with values from all countries
     // Data is fetched from localstorage
@@ -40,11 +41,18 @@
         } else{
             selectedTo = id;
         }
-        console.log(selectedFrom, selectedTo);
     }
 
     function doCalculation(){
-        const values = fetchData.getCurrency();
+        // Regex to check match ends with from country
+        const regex = new RegExp(selectedFrom + "$");
+        const {quotes} = fetchData.getCurrency();
+        for(var key in quotes){
+            if(key.match(regex)){
+                console.log(key);
+            }
+        }
+
     }
 
 
