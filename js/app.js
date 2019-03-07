@@ -7,7 +7,10 @@
     const toCurrencyInput = document.querySelector("#currencyTo");
 
 
-
+    
 
 
 })();
+
+
+fetchData.getFromLocal();
