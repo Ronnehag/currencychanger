@@ -13,7 +13,7 @@ const fetchData = (function () {
     const getCountryJSON = () => {
         return JSON.parse(storage.getItem("countryList"));
     }
-    const getCurencyDataJSON = () => {
+    const getCurrencyDataJSON = () => {
         return JSON.parse(storage.getItem("currencyValues"));
     }
 
@@ -49,6 +49,8 @@ const fetchData = (function () {
 
     return {
         init: init,
+        getCountries : getCountryJSON,
+        getCurrency : getCurrencyDataJSON
     }
 
 })();
