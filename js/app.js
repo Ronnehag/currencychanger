@@ -35,42 +35,23 @@
     })();
 
     // Gets the selected value-id from the datalist, stores it in the private local variable.
-    function storeSelectedId(){
+    function storeSelectedId() {
         let val = this.value;
         let id = document.querySelector(`#countries option[value='${val}']`).getAttribute("data-id");
-        if(this.getAttribute("id") === "currencyFrom"){
+        if (this.getAttribute("id") === "currencyFrom") {
             selectedFrom = id;
-        } else{
+        } else {
             selectedTo = id;
         }
     }
 
-    async function doCalculation(){
-        // Regex to check match ends with from country
-        const regexFrom = new RegExp(selectedFrom + "$");
-        const regexTo = new RegExp(selectedTo + "$");
-        console.log(selectedFrom, selectedTo);
-        const res = await fetchData.fetchCurrency(selectedFrom, selectedFrom, selectedTo);
-        console.log(res);
-
-        let valueFrom;
-        let valueTo;
-        for(var key in quotes){
-            // Returera USDSEK
-            if(key.match(regexFrom)){
-                valueFrom = quotes[key];
-            }
-            if(key.match(regexTo)){
-                valueTo = quotes[key];
-            }
-        }
-        
-        console.log(valueFrom, valueTo); // SEK 9.xxxx
-
-        // valueFROM är valda landet SEK, valueFROM blir 9.xxxx kr
-        // USDTOSEK blir input / 9.xxxxx så får man ut dollarvärdet
-        // sen kör man USDto selectedTO value och printar ut det i inputen
-
+    async function doCalculation() {
+        // Get current changevalues for selected countries
+        const { rates } = await fetchData.fetchCurrency(selectedFrom, selectedFrom, selectedTo);
+        const valueFrom = amountFrom.value;
+        console.log(rates[selectedTo]);
+        let amount = valueFrom * rates[selectedTo];
+        resultField.value = amount;
     }
 
 
