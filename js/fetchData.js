@@ -2,20 +2,14 @@
 
 const fetchData = (function () {
 
-    // Local storage values
-    let currencyValues;
-    let countryValues;
 
-    const storeInLocal = function () {
-
+    function updateLocalStorage() {
+        setInterval(fetchCountryList, 1000 * 60 * 60);
+        setInterval(fetchCurrencyData, 1000 * 60 * 60);
     }
 
     const getFromLocal = function (val) {
-        if(val === "countries"){
-            return countryValues;
-        } else{
-            return currencyValues;
-        }
+        
     }
 
     const fetchCountryList = function () {
@@ -24,7 +18,7 @@ const fetchData = (function () {
             try {
                 let res = await fetch(_url);
                 let data = await res.json();
-                return data;
+                localStorage.setItem("currencyValues", JSON.stringify(data));
             } catch (err) {
                 console.log(err);
             }
@@ -37,17 +31,22 @@ const fetchData = (function () {
             try {
                 let res = await fetch(_url);
                 let data = await res.json();
-                return data;
+                currencyValues = data;
             } catch (err) {
                 console.log(err);
             }
         }
     }
+
+    const init = function(){
+        updateLocalStorage();
+    }
+
     return {
         fetchCountries: fetchCountryList,
         fetchCurrencyData: fetchCurrencyData,
-        getFromLocal: getFromLocal
-
+        getFromLocal: getFromLocal,
+        init : init
     }
 
 })();
