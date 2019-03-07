@@ -11,23 +11,32 @@
     const toCurrencyInput = document.querySelector("#currencyTo");
     const dropdownList = document.querySelector("#countries");
 
+    let selectedFrom;
+    let selectedTo;
+
     // EVENTLISTENERS
-    fromCurrencyInput.addEventListener("change",calculateValues);
+    fromCurrencyInput.addEventListener("change", calculateValues);
 
     // Fills the search input's dropdown list with values from all countries
     // Data is fetched from localstorage
     (function fillDropDown() {
         const { currencies } = fetchData.getCountries();
         for (var prop in currencies) {
-            let temp = `<option value="${currencies[prop]}"
-            style="background-image:url(https://www.countryflags.io/be/flat/24.png)">            
-            </option>`
+            let temp = `
+            <option value="${currencies[prop]}" data-id="${prop}"></option>`
             dropdownList.innerHTML += temp;
         }
     })();
 
+    // Gets the selected value-id from the datalist;
     function calculateValues(){
-        console.log(this);
+        let val = this.value;
+        let id = document.querySelector(`#countries option[value='${val}']`).getAttribute("data-id");
+        if(this.getAttribute("id") === "currencyFrom"){
+            selectedFrom = id;
+        } else{
+            selectedTo = id;
+        }
     }
 
 
