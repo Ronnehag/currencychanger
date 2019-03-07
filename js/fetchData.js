@@ -2,51 +2,53 @@
 
 const fetchData = (function () {
 
+    const storage = window.localStorage;
 
-    function updateLocalStorage() {
-        setInterval(fetchCountryList, 1000 * 60 * 60);
-        setInterval(fetchCurrencyData, 1000 * 60 * 60);
+
+    async function updateLocalStorage() {
+        setInterval(await fetchCountryList, 1000 * 60 * 60);
+        setInterval(await fetchCurrencyData, 1000 * 60 * 60);
     }
 
-    const getFromLocal = function (val) {
-        
+    const getCountryJSON = () => {
+        return JSON.parse(storage.getItem("countryList"));
+    }
+    const getCurencyDataJSON = () => {
+        return JSON.parse(storage.getItem("currencyValues"));
     }
 
-    const fetchCountryList = function () {
+    function fetchCountryList() {
         const _url = "http://www.apilayer.net/api/list?access_key=2ac1611a2dfc48d014d02f69297a99c8&format=1";
         return async function () {
             try {
                 let res = await fetch(_url);
                 let data = await res.json();
-                localStorage.setItem("currencyValues", JSON.stringify(data));
+                storage.setItem("countryList", JSON.stringify(data));
             } catch (err) {
                 console.log(err);
             }
         }
     }
 
-    const fetchCurrencyData = function () {
+    function fetchCurrencyData() {
         const _url = "http://www.apilayer.net/api/live?access_key=2ac1611a2dfc48d014d02f69297a99c8&format=1";
         return async function () {
             try {
                 let res = await fetch(_url);
                 let data = await res.json();
-                currencyValues = data;
+                storage.setItem("currencyValues", JSON.stringify(data));
             } catch (err) {
                 console.log(err);
             }
         }
     }
 
-    const init = function(){
+    const init = async () => {
         updateLocalStorage();
     }
 
     return {
-        fetchCountries: fetchCountryList,
-        fetchCurrencyData: fetchCurrencyData,
-        getFromLocal: getFromLocal,
-        init : init
+        init: init,
     }
 
 })();
