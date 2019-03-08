@@ -20,9 +20,9 @@ const fetchData = (function () {
     const getCountryJSON = () => {
 
         if (detectmob()) {
-            fetchMobile().then(val => {
-                return val;
-            });
+            return (async function(){
+                return await fetchMobile();
+            })();
         } else {
             if (storage.getItem("countryList") != null) {
                 return JSON.parse(storage.getItem("countryList"));
