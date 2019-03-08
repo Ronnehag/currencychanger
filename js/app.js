@@ -29,12 +29,11 @@
         for (var prop in rates) {
             let { currencies } = await fetchData.getCountryName(prop);
             let [{name}] = currencies;
-
             let temp = `
             <option value="${name}" data-id="${prop}" data-alph="${prop.substr(0, 2)}"></option>`
             dropdownList.innerHTML += temp;
         }
-        console.log(base);
+        // API fetches base values as EUR so has to add EUR manually
         let eu =
         `<option value="Euro" data-id="${base}" data-alph="${base.substr(0, 2)}"></option>`
         dropdownList.innerHTML += eu;
