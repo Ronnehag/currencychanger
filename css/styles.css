@@ -1,18 +1,23 @@
 body{
     background: #1D976C;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: "Acme", Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 .mt-5{
     margin-top: 50px;
 }
-
 .card{
-    min-width: 768px;
-    background: #474E5D;
+    background: rgb(26, 27, 29);
 }
+.card-title{
+    font-size: 28px !important;
+    margin-top: 20px !important;
+    font-weight: bold !important;
+}
+
 #swaparrows i{
     font-size: 40px;
     padding: 0;
@@ -29,4 +34,10 @@ background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, F
 }
 input::-webkit-calendar-picker-indicator {
     display: none;
+  }
+
+
+  /* label color */
+  .input-field label {
+    color: #000;
   }

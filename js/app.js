@@ -11,6 +11,9 @@
     const confirmButton = document.querySelector("#calculate");
     const amountFrom = document.querySelector("#amountFrom");
     const resultField = document.querySelector("#amountTo");
+    const flagFrom = document.querySelector("#flagFrom");
+    const flagTo = document.querySelector("#flagTo");
+    const clearButton = document.querySelector("#clear");
 
     // Private variables that holds current selected ID's
     // changes values through the event listeners.
@@ -21,6 +24,7 @@
     fromCurrencyInput.addEventListener("change", storeSelectedId);
     toCurrencyInput.addEventListener("change", storeSelectedId);
     confirmButton.addEventListener("click", doCalculation);
+    clearButton.addEventListener("click", clearApp);
 
     // Fills the search input's dropdown list with values from all countries
     // Data is fetched from localstorage
@@ -41,19 +45,37 @@
 
     // Gets the selected value-id from the datalist, stores it in the private local variable.
     function storeSelectedId() {
+        if(this.value === ""){
+            if(this.getAttribute("id") === "currencyFrom"){
+                flagFrom.innerHTML = "";
+            } else{
+                flagTo.innerHTML = "";
+            }            
+            return;
+        }
         let val = this.value;
         let id = document.querySelector(`#countries option[value='${val}']`).getAttribute("data-id");
         let flagId = document.querySelector(`#countries option[value='${val}']`).getAttribute("data-alph");
         if (this.getAttribute("id") === "currencyFrom") {
             selectedFrom = id;
             let img = `<img src="https://www.countryflags.io/${flagId}/flat/24.png"/>`
-            document.querySelector("#flagFrom").innerHTML = img;
+            flagFrom.innerHTML = img;
         } else {
             selectedTo = id;
             let img = `<img src="https://www.countryflags.io/${flagId}/flat/24.png"/>`
-            document.querySelector("#flagTo").innerHTML = img;
+            flagTo.innerHTML = img;
         }
     }
+
+    function clearApp(){
+        fromCurrencyInput.value = "";
+        toCurrencyInput.value = "";
+        flagFrom.innerHTML = "";
+        flagTo.innerHTML = "";
+        amountFrom.value = "";
+        resultField.value = "";
+    }
+
 
     // Get current changevalues for selected countries
     async function doCalculation() {
