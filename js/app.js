@@ -1,5 +1,3 @@
-
-
 (function () {
     // Initialize the app, starts the interval timer that
     // fetches API data and stores in localstorage.
