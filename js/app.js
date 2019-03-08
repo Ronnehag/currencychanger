@@ -13,6 +13,7 @@
     const confirmButton = document.querySelector("#calculate");
     const amountFrom = document.querySelector("#amountFrom");
     const resultField = document.querySelector("#amountTo");
+    const arrow = document.querySelector("#arrow");
 
     // Private variables that holds current selected ID's
     // changes values through the event listeners.
@@ -47,7 +48,7 @@
     }
 
     // Get current changevalues for selected countries
-    async function doCalculation() {        
+    async function doCalculation() {   
         const { rates } = await fetchData.fetchCurrency(selectedFrom, selectedFrom, selectedTo);
         const valueFrom = amountFrom.value;
         let amount = valueFrom * rates[selectedTo];

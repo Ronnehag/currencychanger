@@ -36,7 +36,6 @@ const fetchData = (function () {
         }
     }
 
-
     const init = () => {
         fetchCountryList();
     }
