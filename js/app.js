@@ -1,5 +1,5 @@
 (function () {
-    // Initialize the app, starts the interval timer that
+    // Initialize the app
     // fetches API data and stores in localstorage.
     // Program will work towards the localstorage, the API will be updated in the background once per hour.
     fetchData.init();
